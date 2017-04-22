@@ -1,7 +1,7 @@
 package com.hendisantika.dao
 
-import com.hendisantika.Drivers
-import com.hendisantika.DriversDao
+import com.hendisantika.model.Drivers
+import com.hendisantika.service.DriversDao
 import mu.KotlinLogging
 import org.junit.After
 import org.junit.Assert

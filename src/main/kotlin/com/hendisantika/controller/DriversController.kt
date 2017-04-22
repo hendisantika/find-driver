@@ -1,7 +1,9 @@
-package com.hendisantika
+package com.hendisantika.controller
 
 import com.hendisantika.exception.DriversException
 import com.hendisantika.exception.ErrorResponse
+import com.hendisantika.model.Drivers
+import com.hendisantika.service.DriversDao
 import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -13,9 +15,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-
-
-
 /**
  * Created by hendisantika on 15/02/17.
  */
@@ -26,7 +25,7 @@ class DriversController @Autowired constructor(val driversDao: DriversDao) {
     companion object : KLogging()
 
     @ExceptionHandler(Exception::class)
-    @RequestMapping("/drivers")
+    @GetMapping("/drivers")
     @ResponseBody
     @Throws(DriversException::class)
     fun getAllDrivers(
@@ -60,12 +59,21 @@ class DriversController @Autowired constructor(val driversDao: DriversDao) {
         return driversDao.findAll(page)
     }
 
-
     protected fun configureRepositoryRestConfiguration(config: RepositoryRestConfiguration) {
         config.setPageParamName("p")
                 .setLimitParamName("l")
                 .setSortParamName("q")
     }
+
+
+    @PostMapping("/drivers/add")
+    @ExceptionHandler(Exception::class)
+    @Throws(DriversException::class)
+    @ResponseBody
+//    fun addDriver(driver: Drivers): ResponseEntity<Drivers>{
+//        return ResponseEntity(driversDao.save(driver), HttpStatus.OK)
+//    }
+    fun addDriver(@RequestBody driver: Drivers) = driversDao.save(driver)
 
 
     @ExceptionHandler(DriversException::class)

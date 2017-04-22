@@ -1,5 +1,7 @@
 package com.hendisantika
 
+import com.hendisantika.model.Drivers
+import com.hendisantika.service.DriversDao
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
