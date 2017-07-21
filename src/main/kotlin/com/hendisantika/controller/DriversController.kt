@@ -70,10 +70,9 @@ class DriversController @Autowired constructor(val driversDao: DriversDao) {
     @ExceptionHandler(Exception::class)
     @Throws(DriversException::class)
     @ResponseBody
-//    fun addDriver(driver: Drivers): ResponseEntity<Drivers>{
-//        return ResponseEntity(driversDao.save(driver), HttpStatus.OK)
-//    }
     fun addDriver(@RequestBody driver: Drivers) = driversDao.save(driver)
+
+
 
 
     @ExceptionHandler(DriversException::class)
